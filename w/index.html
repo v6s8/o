@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>TIANQI</title>
+    <link rel="stylesheet" href="../css/style_qw.css">
+    <link rel="shortcut icon" href="../images/favicon.png">
+
+</head>
+<body>
+    <div class="bg-xx">
+        <p><span id="weChatId"></span></p>
+        <div class="btn-container">
+            <a href="../q/" class="btn-t1">QQ客服</a>
+            <button class="btn-x" id="copyButton">复 制 微 信 号</button>
+        </div>
+
+        <div class="img-x"><img src="../images/biubiu.png"></div>
+    </div>
+
+    <script type="text/javascript">
+        const wId = "YYHH8022"; // 微信号
+        document.getElementById('weChatId').textContent = "微信号: "+wId;
+
+        async function copyAndRedirect() {
+            try {
+                await navigator.clipboard.writeText(wId);
+                window.location.href = 'weixin://dl'; // 跳转到微信应用
+            } catch (error) {
+                alert('复制失败, 请手动输入 ' + wId);
+            }
+        }
+
+        document.getElementById('copyButton').addEventListener('click', copyAndRedirect);
+
+        // 禁止右键菜单
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // 禁止 F12 打开开发者工具
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
