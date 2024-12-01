@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TianQi·企鹅</title>
+  <link rel="shortcut icon" href="./images/favicon.png">
+  <link rel="stylesheet" href="./css/style_qw.css">
+
+  <!-- 存储QQ号码，并区分移动设备和PC -->
+  <script type="text/javascript">
+    var qqNumber = "1300283618"; // QQ号码存储在变量中
+
+    // 判断设备类型并跳转到相应的QQ好友添加页面
+    function jumpToAddFriend() {
+      var ua = navigator.userAgent;
+      var isIphone = /iPhone/.test(ua);
+      var isAndroid = /Android/.test(ua);
+      
+      if (isIphone || isAndroid) {
+        location.href = "mqq://card/show_pslcard?src_type=internal&version=1&uin=" + qqNumber + "&card_type=person&source=sharecard";
+      } else {
+        location.href = "tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=" + qqNumber;
+      }
+    }
+    // 判断设备类型并跳转到相应的QQ聊天页面
+    function jumpToChat() {
+      var ua = navigator.userAgent;
+      var isIphone = /iPhone/.test(ua);
+      var isAndroid = /Android/.test(ua);
+      
+      if (isIphone || isAndroid) {
+        location.href = "mqqwpa://im/chat?chat_type=wpa&version=1&src_type=web&web_src=oicqzone.com&uin=" + qqNumber;
+      } else {
+        location.href =  "tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=" + qqNumber;
+      }
+    }
+    
+    //注释不要删除
+    //   var url = "mqqwpa://im/chat?chat_type=wpa&version=1&src_type=web&web_src=oicqzone.com&uin=" + qqNumber;
+    //   window.location.href = url;
+    // function jumpToqqq() {
+    //   var url = "http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=0IlHv8sjBeFi9lOG0St9UdOFNuwsy3-_&authKey=iJA93PZHEBRB435e4%2B7ydIN0SNedrnuJEN6wjvFONUeUtvUC8NJiVPl3VpVVmDNv&noverify=0";
+    //   window.location.href = url;
+    // }
+    
+    // function jumpTo() {
+    //   var url = "mqqopensdkapi://bizAgent/t/openUrl?url=要跳转的链接";
+    //   window.location.href = url;
+    // }
+  </script>
+
+</head>
+
+<body>
+  <div class="container bg-user">
+        <div class="top"><img src="https://p0.meituan.net/csc/edc3993bb21b2e5403b3ffd88d435bd698521.jpg"></div>
+
+        <!-- 动态展示QQ头像和信息 -->
+        <div class="circle"><img id="qq-avatar" src=""></div>
+        <p class="user-title">欲买桂花同载酒</p>
+        <p class="user-qq">QQ: <span id="qq-number"></span></p>
+        <div class="idcard"><img src="./images/svip.png"></div>
+        <div class="zan"><img src="./images/zan.png"></div>
+        <p class="sign-text"><img src="./images/person.jpeg">&nbsp;男&nbsp;|&nbsp;双鱼座&nbsp;|&nbsp;中国&nbsp;</p>
+        <p class="sign-text"><img src="./images/sign.jpeg"><a href="">&nbsp;乐生活、来机领</a></p>
+
+        <!-- <p class="sign-text"><img src="images/qzone.jpeg"><a id="qzone-link" href="">&nbsp;Ta的空间</a></p> -->
+        <!-- <p class="sign-text"><img src="../images/camera.jpeg">&nbsp;精选照片</p> -->
+        <a href="./w/" class="btn-t">微信客服</a> 
+        <div class="border-img"><img src="https://p1.meituan.net/csc/6465f79cc4dd592a1551c1f10bf4b8296223481.gif"></div>
+
+        <!-- 添加好友、发消息按钮 -->
+        <button class="btn-q" onclick="jumpToAddFriend()">添加好友</button>
+        <button class="btn-q2" onclick="jumpToChat()">发消息</button>
+  </div>
+ 
+  <script>
+    document.getElementById('qq-number').textContent = qqNumber;
+
+    var qqAvatar = document.getElementById('qq-avatar');
+    qqAvatar.src = "http://q1.qlogo.cn/g?b=qq&nk=" + qqNumber + "&s=640";
+
+    // var qzoneLink = document.getElementById('qzone-link');
+    // qzoneLink.href = "https://mp.qzone.qq.com/u/" + qqNumber;
+
+
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+
+    document.addEventListener('keydown', function(e) {
+    if (e.keyCode === 123 || (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 80))) {
+      e.preventDefault();
+    }
+    });
+  </script>
+
+</body>
+</html>
